@@ -6,7 +6,9 @@ const Answer = ({ correctAnswer, incorrectAnswers }) => {
   console.log(correctAnswer, incorrectAnswers);
   const [selectedAnswer, setSelectedAnswer] = useState();
   const handleResult = () => {
-    selectedAnswer===correctAnswer?console.log("Answer is correct"):console.log("Answer is incorrect");
+    selectedAnswer === correctAnswer
+      ? console.log("Answer is correct")
+      : console.log("Answer is incorrect");
   };
 
   return (
@@ -23,7 +25,14 @@ const Answer = ({ correctAnswer, incorrectAnswers }) => {
         </li>
         {incorrectAnswers?.map((incorrectAnswer, index) => {
           return (
-            <li key={index} value={incorrectAnswer}>
+            <li
+              onClick={(e) => {
+                setSelectedAnswer(e.target.value);
+                handleResult();
+              }}
+              key={index}
+              value={incorrectAnswer}
+            >
               {incorrectAnswer}
             </li>
           );

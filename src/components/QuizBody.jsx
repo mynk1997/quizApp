@@ -19,7 +19,15 @@ const QuizBody = () => {
   };
   console.log(quizIndex);
   console.log(quiz);
-  if (quizIndex === -1) return "Select a Quiz";
+  if (quizIndex === -1)
+    return (
+      <>
+        <Link to={"/"}>
+          <button>Go Back</button>
+        </Link>{" "}
+        <p>Select a Quiz</p>
+      </>
+    );
   return (
     <div>
       <Link to={"/"}>

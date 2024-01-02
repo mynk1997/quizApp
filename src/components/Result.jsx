@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 
-const Result = () => {
+
+const Result = ({result}) => {
   return (
-    <div>Result</div>
+    <div>{result}</div>
   )
 }
 

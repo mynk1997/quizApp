@@ -8,23 +8,26 @@ import { Link } from "react-router-dom";
 
 const QuizBody = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [result, setResult] = useState("");
 
   const { quizIndex, quiz } = useContext(QuizContext);
 
   const handleQuestionIndexPrevious = () => {
+    setResult("")
     setQuestionIndex(questionIndex - 1);
   };
   const handleQuestionIndexNext = () => {
+    setResult("")
+
     setQuestionIndex(questionIndex + 1);
   };
-  console.log(quizIndex);
-  console.log(quiz);
+
   if (quizIndex === -1)
     return (
       <>
         <Link to={"/"}>
           <button>Go Back</button>
-        </Link>{" "}
+        </Link>
         <p>Select a Quiz</p>
       </>
     );
@@ -39,9 +42,9 @@ const QuizBody = () => {
         correctAnswer={quiz[quizIndex]?.questions[questionIndex]?.correctAnswer}
         incorrectAnswers={
           quiz[quizIndex]?.questions[questionIndex]?.incorrectAnswers
-        }
+        } setResult={setResult}
       />
-      <Result />
+      <Result result={result} />
       {questionIndex > 0 && (
         <button onClick={handleQuestionIndexPrevious}>Previous</button>
       )}

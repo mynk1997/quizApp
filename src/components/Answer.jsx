@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
+import {  useState } from "react";
 
-const Answer = ({ correctAnswer, incorrectAnswers }) => {
+const Answer = ({ correctAnswer, incorrectAnswers,setResult }) => {
   console.log(correctAnswer, incorrectAnswers);
   const [selectedAnswer, setSelectedAnswer] = useState();
+console.log(selectedAnswer)
   const handleResult = () => {
     selectedAnswer === correctAnswer
-      ? console.log("Answer is correct")
-      : console.log("Answer is incorrect");
+      ? setResult("Answer is correct")
+      : setResult("Answer is incorrect");
   };
 
   return (
@@ -16,8 +17,8 @@ const Answer = ({ correctAnswer, incorrectAnswers }) => {
       <ol>
         <li
           value={correctAnswer}
-          onClick={(e) => {
-            setSelectedAnswer(e.target.value);
+          onClick={() => {
+            setSelectedAnswer(correctAnswer);
             handleResult();
           }}
         >
@@ -26,8 +27,8 @@ const Answer = ({ correctAnswer, incorrectAnswers }) => {
         {incorrectAnswers?.map((incorrectAnswer, index) => {
           return (
             <li
-              onClick={(e) => {
-                setSelectedAnswer(e.target.value);
+              onClick={() => {
+                setSelectedAnswer(incorrectAnswer);
                 handleResult();
               }}
               key={index}

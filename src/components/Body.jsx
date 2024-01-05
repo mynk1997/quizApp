@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Menu from "./Menu";
 import QuizBody from "./QuizBody";
+import TestResult from "./TestResult";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -10,6 +11,9 @@ const Body = () => {
   },{
     path:"/quizbody",
     element:<QuizBody/>
+  },{
+    path:"/result",
+    element:<TestResult/>
   }
 ]);
   return (

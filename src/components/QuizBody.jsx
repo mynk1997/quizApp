@@ -13,11 +13,11 @@ const QuizBody = () => {
   const { quizIndex, quiz } = useContext(QuizContext);
 
   const handleQuestionIndexPrevious = () => {
-    setResult("")
+    setResult("");
     setQuestionIndex(questionIndex - 1);
   };
   const handleQuestionIndexNext = () => {
-    setResult("")
+    setResult("");
 
     setQuestionIndex(questionIndex + 1);
   };
@@ -42,7 +42,8 @@ const QuizBody = () => {
         correctAnswer={quiz[quizIndex]?.questions[questionIndex]?.correctAnswer}
         incorrectAnswers={
           quiz[quizIndex]?.questions[questionIndex]?.incorrectAnswers
-        } setResult={setResult}
+        }
+        setResult={setResult}
       />
       <Result result={result} />
       {questionIndex > 0 && (
@@ -52,6 +53,11 @@ const QuizBody = () => {
       {questionIndex != quiz[quizIndex].questions.length - 1 && (
         <button onClick={handleQuestionIndexNext}>Next</button>
       )}
+      <div>
+        {questionIndex === quiz[quizIndex].questions.length - 1 && (
+          <Link to="/"><button>Finish Test</button></Link>
+        )}
+      </div>
     </div>
   );
 };

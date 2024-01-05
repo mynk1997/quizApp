@@ -4,10 +4,10 @@ import {  useState } from "react";
 
 const Answer = ({ correctAnswer, incorrectAnswers,setResult }) => {
   console.log(correctAnswer, incorrectAnswers);
-  const [selectedAnswer, setSelectedAnswer] = useState();
+  const [selectedAnswer, setSelectedAnswer] = useState("");
 console.log(selectedAnswer)
-  const handleResult = () => {
-    selectedAnswer === correctAnswer
+  const handleResult = (answer) => {
+    answer === correctAnswer
       ? setResult("Answer is correct")
       : setResult("Answer is incorrect");
   };
@@ -18,8 +18,7 @@ console.log(selectedAnswer)
         <li
           value={correctAnswer}
           onClick={() => {
-            setSelectedAnswer(correctAnswer);
-            handleResult();
+            handleResult(correctAnswer);
           }}
         >
           {correctAnswer}

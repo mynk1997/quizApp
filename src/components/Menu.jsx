@@ -1,28 +1,20 @@
-import { useContext } from "react";
-import QuizContext from "../utils/quizContext";
+
 import { Link } from "react-router-dom";
 
 const Menu = () => {
-  const { setQuizIndex } = useContext(QuizContext);
 
   return (
     <div>
       <h2>Select your Quiz</h2>
       <div>
-        <Link to={"/quizbody"}>
+        <Link to={"/quizbody/"+0}>
           <button
-            onClick={() => {
-              setQuizIndex(0);
-            }}
           >
             HTML Quiz
           </button>
         </Link>
-        <Link to={"/quizbody"}>
+        <Link to={"/quizbody/"+1}>
           <button
-            onClick={() => {
-              setQuizIndex(1);
-            }}
           >
             CSS Quiz
           </button>

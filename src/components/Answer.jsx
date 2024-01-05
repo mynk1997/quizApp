@@ -1,12 +1,23 @@
 /* eslint-disable react/prop-types */
 
-import {  useState } from "react";
+import { useCallback, useState } from "react";
+import { shuffle } from "../utils/shuffle";
 
-const Answer = ({ correctAnswer, incorrectAnswers,setResult }) => {
+const Answer = ({
+  correctAnswer,
+  incorrectAnswers,
+  setResult,
+  result,
+  questionIndex,
+}) => {
   console.log(correctAnswer, incorrectAnswers);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-console.log(selectedAnswer)
-  const handleResult = (answer) => {
+  const [selectedAnswer, setSelectedAnswer] = useState();
+  const options = useCallback(shuffle([correctAnswer, ...incorrectAnswers]), [
+    questionIndex,
+  ]);
+  console.log(options);
+  const handleResult = (answer, index) => {
+    setSelectedAnswer(index);
     answer === correctAnswer
       ? setResult("Answer is correct")
       : setResult("Answer is incorrect");
@@ -15,25 +26,25 @@ console.log(selectedAnswer)
   return (
     <div>
       <ol>
-        <li
-          value={correctAnswer}
-          onClick={() => {
-            handleResult(correctAnswer);
-          }}
-        >
-          {correctAnswer}
-        </li>
-        {incorrectAnswers?.map((incorrectAnswer, index) => {
+        {options?.map((option, index) => {
           return (
             <li
               onClick={() => {
-                setSelectedAnswer(incorrectAnswer);
-                handleResult();
+                handleResult(option, index);
               }}
               key={index}
-              value={incorrectAnswer}
+              value={option}
+              disabled={result.length != 0}
+              style={{
+                backgroundColor:
+                  selectedAnswer == index && result != 0
+                    ? option == correctAnswer
+                      ? "green"
+                      : "red"
+                    : "rgb(36, 36, 36)",
+              }}
             >
-              {incorrectAnswer}
+              {option}
             </li>
           );
         })}

@@ -4,13 +4,14 @@ import Question from "./Question";
 import Result from "./Result";
 import Title from "./Title";
 import QuizContext from "../utils/quizContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const QuizBody = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [result, setResult] = useState("");
-
-  const { quizIndex, quiz } = useContext(QuizContext);
+  const { quizIndex } = useParams();
+  console.log(quizIndex);
+  const { quiz } = useContext(QuizContext);
 
   const handleQuestionIndexPrevious = () => {
     setResult("");
@@ -43,7 +44,7 @@ const QuizBody = () => {
         incorrectAnswers={
           quiz[quizIndex]?.questions[questionIndex]?.incorrectAnswers
         }
-        setResult={setResult}
+        setResult={setResult} result={result} questionIndex={questionIndex}
       />
       <Result result={result} />
       {questionIndex > 0 && (
@@ -55,7 +56,9 @@ const QuizBody = () => {
       )}
       <div>
         {questionIndex === quiz[quizIndex].questions.length - 1 && (
-          <Link to="/"><button>Finish Test</button></Link>
+          <Link to="/result">
+            <button>Finish Test</button>
+          </Link>
         )}
       </div>
     </div>

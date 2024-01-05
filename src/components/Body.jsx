@@ -9,10 +9,10 @@ const Body = () => {
     path:'/',
     element:<Menu/>
   },{
-    path:"/quizbody",
+    path:"/quizbody/:quizIndex",
     element:<QuizBody/>
   },{
-    path:"/result",
+    path:"/result/",
     element:<TestResult/>
   }
 ]);
